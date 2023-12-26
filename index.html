@@ -4,116 +4,60 @@
 <title>The Mercenary</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-
-body, html {
-  height: 100%;
-  line-height: 1.8;
-  background:#111314!important;
-}
-
-#myNavbar{
-    background:#111314!important;
-    box-shadow: none!important;
-}
-
-#myNavbar img{
-    height:2rem;
-    width:auto;
-    margin-right: 1rem;
-}
-
-#myNavbar a{
-    color:#979fb1!important;
-    font-size:1rem!important;
-    text-decoration: none;
-}
-
-
-/* Full height image header */
-.bgimg-1 {
-  background-position: center;
-  background-size: cover;
-  background-color: #111314;
-  min-height: 100%;
-}
-
-.w3-bar .w3-button {
-  padding: 16px;
-}
-
-.copyright {
-    font-size:14px;
-    color:#5a6b8b;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
+
+
 <body>
 
-<!-- Navbar (sit on top) -->
-<div class="w3-top">
-  <div class="w3-bar w3-card" id="myNavbar">
-    <a href="#home" class="w3-bar-item w3-wide"><img src="img/symbol-themercenary.png">The Mercenary</a>
-    <!-- Right-sided navbar links -->
-    <!-- <div class="w3-right w3-hide-small">
-      <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
-      <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-user"></i> TEAM</a>
-      <a href="#work" class="w3-bar-item w3-button"><i class="fa fa-th"></i> WORK</a>
-      <a href="#pricing" class="w3-bar-item w3-button"><i class="fa fa-usd"></i> PRICING</a>
-      <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
-    </div> -->
-    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
 
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
-      <i class="fa fa-bars"></i>
-    </a>
+  <form>
+  <div>
+    <label for="name">Name</label>
+    <input type="text" name="name">
   </div>
+  <div>
+    <label for="order-no">Order No</label>
+    <input type="text" name="order-no">
+  </div>
+  <div>
+    <label for="size">Size</label>
+    <input type="text" name="size">
+  </div>
+  <div>
+    <label for="spools">Spools</label>
+    <input type="text" name="spools">
+  </div>
+  <div>
+    <label for="prints">Prints</label>
+    <input type="text" name="prints">
+  </div>
+  <div>
+    <label for="enlgts">Enlgts</label>
+    <input type="text" name="enlgts">
+  </div>
+  <div>
+    <label for="price">Price</label>
+    <input type="text" name="price">
+  </div>
+</form>
+
+<div id="top-middle"></div>
+<h1 id="main-kodak">The Mercenary</h1>
+<!-- <img id="ko" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/108463/KOnew.png">
+<img id="odak" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/108463/odaknew.png"> -->
+<h2 id="film">The Mercenary</h2>
+<h2 id="wallet">Brand Experience</h2>
+<h1 id="sm-title">The Mercenary</h1>
+<img id="blue-box" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/108463/rectangle.png">
+<div id="bottom-left">
+  <h2>Call<br><span>to Arms</span></h2>
+  <h3>We Stand for your Business</h3>
 </div>
+<div id="bottom-middle"></div>
+<img id="girl" src="img/symbol-themercenary.png">
+<div id="bottom-right"></div>
 
-<!-- Header with full-height image -->
-<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
-  <div class="w3-display-left w3-text-white" style="padding:48px">
-    <span class="w3-jumbo w3-hide-small">Your Tactical Ally
-    </span><br>
-    <p class="w3-large" style="margin-bottom:0!important;">That aligns people’s perceptions.</p>
-    <p class="w3-large" style="margin-bottom:0!important;">Stop wasting valuable time with projects that just isn't you.</p>
-    <!-- <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Learn more and start today</a></p> -->
-  </div> 
-  <div class="copyright w3-display-bottomleft" style="padding:24px 48px">
-    <p>© <script>document.write(new Date().getFullYear())</script>. The Mercenary.</p>
-  </div>
-</header>
-
-<script>
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
-}
-
-
-// Toggle between showing and hiding the sidebar when clicking the menu icon
-var mySidebar = document.getElementById("mySidebar");
-
-function w3_open() {
-  if (mySidebar.style.display === 'block') {
-    mySidebar.style.display = 'none';
-  } else {
-    mySidebar.style.display = 'block';
-  }
-}
-
-// Close the sidebar with the close button
-function w3_close() {
-    mySidebar.style.display = "none";
-}
-</script>
 
 </body>
 </html>

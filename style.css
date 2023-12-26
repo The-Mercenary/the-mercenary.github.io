@@ -1,0 +1,306 @@
+
+body {
+    background-color: #d6c092;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 2fr 1fr;
+    color: #111314;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 0 auto;
+    font-family: sans-serif;
+    max-width: 1650px;
+    height:100vh;
+    max-height:100%;
+  }
+  
+  #top-middle,
+  #bottom-left,
+  #bottom-right {
+    background-color: #111314;
+  }
+  
+  #top-middle {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  
+  #bottom-middle {
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/108463/background.png);
+    grid-column: 2;
+    grid-row: 2;
+  }
+  
+  #bottom-left {
+    display: grid;
+    align-items: center;
+  }
+  
+  #bottom-left h2 {
+    font-size: 2rem;
+    margin: 0;
+    letter-spacing: 5px;
+    align-self: end;
+  }
+  
+  #bottom-left h2 span {
+    font-size: 2rem;
+  }
+  
+  #bottom-left h3 {
+    font-size: 1rem;
+    margin: 0;
+    letter-spacing: 5px;
+    align-self: start;
+  }
+  
+  #bottom-right {
+    grid-column: 3;
+    grid-row: 2;
+  }
+  
+  form {
+    grid-column: 1;
+    line-height: 45px;
+    display: grid;
+    padding: 5% 5% 10% 1%;
+  }
+  
+  form div {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+  }
+  
+  input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px dashed #203467;
+  }
+  
+  h1#main-kodak,
+  h2#film,
+  h2#wallet {
+    grid-row: 1;
+    grid-column: 3;
+  }
+  
+  h1#main-kodak {
+    justify-self: center;
+    align-self: center;
+    font-size: 45px;
+    letter-spacing: 5px;
+  }
+  
+  h2#wallet {
+    justify-self: center;
+    align-self: end;
+    font-size: 1rem;
+    text-align: center;
+    letter-spacing: 0.5rem;
+    margin-left: 25px;
+    margin-bottom: 90px;
+  }
+  
+  h2#film {
+    justify-self: center;
+    align-self: end;
+    font-size: 3rem;
+    letter-spacing: 1rem;
+    margin-left: 25px;
+    margin-bottom: 120px;
+  }
+  
+  #blue-box {
+    grid-column: 3;
+    grid-row: 1;
+    height: 106px;
+    width: 30px;
+    background-color: #111314;
+    align-self: end;
+    margin-bottom: 98px;
+  }
+  
+  #bottom-left h2,
+  #bottom-left h3 {
+    color: #d6c092;
+    text-align: center;
+  }
+  
+  
+  #girl {
+    grid-column: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    justify-self: end;
+    max-height: 640px;
+  }
+  
+  #ko {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    align-self: center;
+    margin-top: 25px;
+    height: 75px;
+  }
+  
+  #odak {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: start;
+    align-self: center;
+    margin-top: 25px;
+    height: 75px;
+  }
+  
+  @media (min-width: 1651px) {
+    body {
+      margin-top: 5%;
+    }
+  }
+  
+  @media (max-width: 1020px) {
+    body {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(4, auto);
+    }
+  
+    #girl,
+    #top-middle {
+      grid-column: 1;
+      grid-row: 2;
+    }
+  
+    #girl {
+      height: 500px;
+    }
+    
+    
+    h1#sm-title {
+      grid-row: 1;
+      grid-column: 1 / 3;
+      justify-self: center;
+      font-size: 7vw;
+      letter-spacing: 5px;
+    
+    }
+    
+    #odak,
+    #ko,
+    #blue-box {
+      display: none;
+    }
+  
+    form {
+      grid-column: 2;
+      grid-row: 2;
+    }
+  
+    h1#main-kodak {
+      display: none;
+    }
+  
+    h2#film,
+    h2#wallet {
+  display: none;
+    }
+  
+  
+    #bottom-middle {
+      grid-column: 1;
+      grid-row: 3;
+    }
+  
+    #bottom-left {
+      grid-column: 2;
+      grid-row: 3;
+    }
+  
+    #bottom-right {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 535px) {
+    
+    body {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(3, auto);
+    }
+  
+    h1#main-kodak {
+     display: none;
+  
+    }
+    
+     h1#sm-title {
+      grid-row: 1;
+      grid-column: 2;
+      align-self: center;
+      color: #d6c092;
+      font-size: 45px;
+  
+    }
+  
+    h2#film,
+    h2#wallet{
+      display: none;
+    }
+  
+    #top-middle {
+      grid-column: 1 / 3;
+      grid-row: 1;
+    }
+  
+    #girl {
+      grid-column: 1;
+      grid-row: 1;
+      height: 200px;
+      justify-self: center;
+    }
+  
+    form {
+      grid-column: 1 / 3;
+      grid-row: 2;
+      padding: 5%;
+    }
+  
+    #bottom-middle {
+      grid-column: 1;
+      grid-row: 3;
+    }
+  
+    #bottom-left {
+      grid-column: 2;
+      grid-row: 3;
+    }
+  
+    #bottom-right {
+      display: none;
+    }
+  }
+  
+  @media (min-width: 1021px) {
+    h1#main-kodak::first-letter {
+      color: #d6c092;
+    }
+  
+    h1#main-kodak span {
+      background: -webkit-linear-gradient(-0deg, #d6c092 50%, #203467 50%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+      h1#main-kodak {
+      display: none;
+    }
+    
+    #sm-title {
+      display: none;
+    }
+  }
+  
+  
+  
