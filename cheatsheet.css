@@ -2,6 +2,19 @@ body {
   scroll-behavior: smooth;
 }
 
+.font-bi {
+  font-family: 'Kodchasan', sans-serif;
+  font-weight: 700;
+}
+
+.font-color-gray600 {
+  color:#979fb1;
+}
+
+.bg-dark300 {
+  background: #1c1d1f;
+}
+
 /**
  * Bootstrap "Journal code" icon
  * @link https://icons.getbootstrap.com/icons/journal-code/
