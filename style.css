@@ -288,17 +288,15 @@ button{
   }
 
   .command {
-    margin-bottom: 2rem;
+    margin-top: 2rem;
     font-size:1.5rem;
     line-height:1.24;
   }
   
   .footer{
     color:#979fb1;
-    position:absolute;
-    bottom:0;
     font-size:0.75rem;
-    margin-bottom:4rem;
+    margin-top:6rem;
   }
 
   @media screen and (max-width:1064px){
