@@ -160,8 +160,6 @@ body::before {
 
 html::before{
 	content: " ";
-	width:100vw;
-	height:99.8vh;
 	display:block;
 	position:fixed;
 	top:0;
@@ -188,7 +186,7 @@ body{
   align-items: center;
   height: 100vh;
   font-family: 'Ubuntu Mono', monospace!important;
-  animation: textShadow 0.8s infinite;
+  /* animation: textShadow 0.8s infinite; */
 }
 
 .container{
