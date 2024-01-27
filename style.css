@@ -161,7 +161,7 @@ body::before {
 html::before{
 	content: " ";
 	width:100vw;
-	height:100vh;
+	height:99.8vh;
 	display:block;
 	position:fixed;
 	top:0;
@@ -297,7 +297,7 @@ button{
     position:absolute;
     bottom:0;
     font-size:0.75rem;
-    margin-bottom:6rem;
+    margin-bottom:4rem;
   }
 
   @media screen and (max-width:1064px){
@@ -320,3 +320,21 @@ button{
       display:inline-block;
     }
     }
+
+    @media screen and (max-width:520px){
+      p{
+        font-size:0.75rem;
+      }
+      .input-cursor{
+        width:0.875rem;
+        height:1.25rem;
+      }
+      .command{
+        font-size:0.875rem;
+        line-height:1;
+      }
+     .footer{
+      font-size:0.75rem;
+      margin-bottom:2rem;
+     }
+      }
