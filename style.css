@@ -176,6 +176,9 @@ html::before{
 	pointer-events:none;
 }
 
+html{
+  height:100%;
+}
 body{
   filter: grayscale(100%) sepia(100%) hue-rotate(75deg);
 	background-color:#212121;
@@ -184,7 +187,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 99vh;
+  height: 100%;
   font-family: 'Ubuntu Mono', monospace!important;
   /* animation: textShadow 0.8s infinite; */
 }
