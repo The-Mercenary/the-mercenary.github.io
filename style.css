@@ -173,7 +173,7 @@ html::before{
 	background-repeat:no-repeat;
 	background-position:center;
 	z-index:100000;
-  border:3rem solid;
+  border: 3rem solid;
   border-color:#d8d8be #eeeee3 #dfdfcb;
 	pointer-events:none;
 }
@@ -192,8 +192,7 @@ body{
 }
 
 .container{
-	margin-top:0!important;
-	margin-bottom:50px!important;
+	margin:0!important;
 }
 
 a:hover, a:active, .blog-entry .kudos-btn:hover, .blog-entry .kudos-btn:active{
@@ -308,7 +307,7 @@ button{
     }
     
     .container{
-      margin:0 1rem;
+      margin:0 1rem!important;
     }
     .typer{
       display:block;
@@ -325,15 +324,16 @@ button{
       p{
         font-size:0.75rem;
       }
-      .input-cursor{
+      .input-cursor {
         width:0.875rem;
         height:1.25rem;
       }
-      .command{
-        font-size:0.875rem;
+      .command {
+        margin-top: 8rem;
+        font-size:0.75rem;
         line-height:1;
       }
-     .footer{
+     .footer {
       font-size:0.75rem;
       margin-bottom:2rem;
      }
