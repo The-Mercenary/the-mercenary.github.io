@@ -178,6 +178,7 @@ html::before{
 
 html{
   height:100%;
+  overflow:hidden;
 }
 body{
   filter: grayscale(100%) sepia(100%) hue-rotate(75deg);
