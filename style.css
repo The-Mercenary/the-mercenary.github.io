@@ -175,16 +175,18 @@ html::before{
   border-color:#d8d8be #eeeee3 #dfdfcb;
 	pointer-events:none;
 }
-
-body{
+html{
   filter: grayscale(100%) sepia(100%) hue-rotate(75deg);
-	background-color:#212121;
+	background-color:#2623e4;
+}
+body{
+	background-color:#2623e4;
   color:#bfe586;
   font-size: 0.875rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   font-family: 'Ubuntu Mono', monospace!important;
   /* animation: textShadow 0.8s infinite; */
 }
