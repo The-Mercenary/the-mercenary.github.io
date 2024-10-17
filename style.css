@@ -171,7 +171,10 @@ html::before{
 	background-repeat:no-repeat;
 	background-position:center;
 	z-index:100000;
-  border: 3.5rem solid;
+  border-left:1rem solid;
+  border-right:1rem solid;
+  border-bottom:3.5rem solid;
+  border-top:1rem solid;
   border-color:#d8d8be #eeeee3 #dfdfcb;
 	pointer-events:none;
 }
@@ -297,12 +300,16 @@ button{
   }
   .footer{
     color:#979fb1;
-    font-size:0.75rem;
+    font-size:1rem;
+    margin:0;
   }
 
   @media screen and (max-width:1064px){
     html::before{
-      border:3.5rem solid;
+      border-left:1rem solid;
+      border-right:1rem solid;
+      border-bottom:3.5rem solid;
+      border-top:1rem solid;
       border-color:#d8d8be #eeeee3 #dfdfcb;
     }
     
@@ -325,7 +332,10 @@ button{
 
     @media screen and (max-width:520px){
       html::before{
-        border:3.5rem solid;
+        border-left:1rem solid;
+        border-right:1rem solid;
+        border-bottom:3.5rem solid;
+        border-top:1rem solid;
         border-color:#d8d8be #eeeee3 #dfdfcb;
       }
       p{

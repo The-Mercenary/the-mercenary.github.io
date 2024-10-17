@@ -77,37 +77,15 @@
     </div>-->
     <div class="footer-container">
     <div class="container">
-        <p class="footer">Copyright (c) <script>document.write(new Date().getFullYear())</script>. The Mercenary | <a href="mailto:themercenary@duck.com">contact us</a></p>
+        <p class="footer">Copyright (c) <script>document.write(new Date().getFullYear())</script>. The Mercenary</p>
+        <a>our projects</a> | <a href="mailto:themercenary@duck.com">contact us</a>
     </div>
     </div>
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.32/build/spline-viewer.js"></script>
     <!--<script src="typings.js"></script>-->
-    
-    <!-- make watermark hidden -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          // Function to hide the logo element
-          const hideSplineLogo = () => {
-            const logoElement = document.querySelector('#logo');
-            if (logoElement) {
-              logoElement.style.display = 'none'; // Hide the logo
-            }
-          };
-      
-          // Use setInterval to continuously check and hide the logo
-          const intervalId = setInterval(() => {
-            hideSplineLogo();
-          }, 500); // Repeat every 500ms
-      
-          // Optional: Stop the interval after a certain period if needed
-          setTimeout(() => {
-            clearInterval(intervalId); // Stop checking after 30 seconds
-          }, 30000); // Stop after 30 seconds
-        });
-      </script>    <!-- make watermark hidden -->
 
       
-    <script>
+    <!--<script>
     function addZero(i) {
         if (i < 10) {i = "0" + i}
         return i;
@@ -139,7 +117,7 @@
             loop: true,
             showCursor: false
         })
-    </script>
+    </script>-->
 
 </body>
 </html>
