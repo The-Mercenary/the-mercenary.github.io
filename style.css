@@ -303,7 +303,7 @@ button{
     line-height:1.24;
   }
   .footer-container{
-    position:absolute;bottom:4rem;text-align: center;z-index: 8;
+    position:absolute;bottom:4rem;text-align: center;z-index: 8;margin:0!important;
   }
   .footer{
     color:#979fb1;
@@ -319,10 +319,7 @@ button{
       border-top:1rem solid;
       border-color:#d8d8be #eeeee3 #dfdfcb;
     }
-    
-    .container{
-      margin:0 1rem!important;
-    }
+  
     .typer{
       display:block;
     }
