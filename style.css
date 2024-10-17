@@ -360,4 +360,11 @@ button{
      .footer {
       font-size:0.75rem;
      }
+     @keyframes flicker {
+      0% {
+      }
+    }
+    @keyframes textShadow {
+      0% {
+    }
       }
