@@ -15,29 +15,52 @@
     <meta property="og:description" content="The Mercenary is a collection of automated solutions capable of generating fully passive earnings. Each Mercenary's 'Squad' completes tasks at the level of a single startup team.">
     <meta property="og:site_name" content="The Mercenary">
     <meta property="og:locale" content="en_US">
-<!-- 다음의 태그는 필수는 아니지만, 포함하는 것을 추천함 -->
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
 
     <title>The Mercenary</title>
 
     <link rel="canonical" href="https://the-mercenary.github.io">
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-    
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <style>
+        a#logo{display:none!important;}
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .spline-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Behind all content */
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            color: white; /* Text color to stand out on the background */
+        }
+    </style>
 </head>
   
-  
-<body>  
-    <div class="monitor"></div>
-        <div class="container">
-            <div class="mb-4">
+<body>
+    <!-- Background Spline Viewer -->
+    <spline-viewer class="spline-bg" url="https://prod.spline.design/2SHTYdLQJoCx1LhN/scene.splinecode"></spline-viewer>
+<!-- original content
+    <div class="container">
+        <div class="mb-4">
             <div class="brand-logo">
-                <object data="assets/brand/logo.png" width="48" height="48"> </object>
+                <object data="assets/brand/logo.png" width="48" height="48"></object>
             </div>
             <p class="mt-4 mb-0">Welcome to <b>The Mercenary</b> 20.24 LTS</p>
             <p class="mb-0">* The Mercenary: Automated Service or Squad for Passive Income.</p>
@@ -50,51 +73,73 @@
                 <span class="auto-type ml-4"></span><span class="input-cursor"></span>
             </div>
         </div>
-        <p class="footer">Copyright (c) <script>document.write(new Date().getFullYear())</script>. The Mercenary
-        </p>
-        </div>
-  <script src="typings.js"></script>
-  
-  <script>
-  function addZero(i) {
-    if (i < 10) {i = "0" + i}
-    return i;
-  }
+        <p class="footer">Copyright (c) <script>document.write(new Date().getFullYear())</script>. The Mercenary</p>
+    </div>-->
+    <div class="footer-container">
+    <div class="container">
+        <p class="footer">Copyright (c) <script>document.write(new Date().getFullYear())</script>. The Mercenary | <a href="mailto:themercenary@duck.com">contact us</a></p>
+    </div>
+    </div>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.32/build/spline-viewer.js"></script>
+    <!--<script src="typings.js"></script>-->
+    
+    <!-- make watermark hidden -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          // Function to hide the logo element
+          const hideSplineLogo = () => {
+            const logoElement = document.querySelector('#logo');
+            if (logoElement) {
+              logoElement.style.display = 'none'; // Hide the logo
+            }
+          };
+      
+          // Use setInterval to continuously check and hide the logo
+          const intervalId = setInterval(() => {
+            hideSplineLogo();
+          }, 500); // Repeat every 500ms
+      
+          // Optional: Stop the interval after a certain period if needed
+          setTimeout(() => {
+            clearInterval(intervalId); // Stop checking after 30 seconds
+          }, 30000); // Stop after 30 seconds
+        });
+      </script>    <!-- make watermark hidden -->
+
+      
+    <script>
+    function addZero(i) {
+        if (i < 10) {i = "0" + i}
+        return i;
+    }
     const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
-    
     const d = new Date();
     let day = weekday[d.getDay()];
     let name = month[d.getMonth()];
     let date = d.getDate()
     document.getElementById("monthname").innerHTML = name;
     document.getElementById("daynum").innerHTML = date;
-    
+
     let h = addZero(d.getHours());
     let m = addZero(d.getMinutes());
     let s = addZero(d.getSeconds());
     let time = h + ":" + m + ":" + s;
     document.getElementById("time").innerHTML = time;
-
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-
     <script>
-      var typed = new Typed(".auto-type",{
-        strings: ["dumplingnews","hadurimcn","southkoreannetwork","mbtizzal","sajuwiki","mbtimeme"],
-        typeSpeed: 50,
-        backSpeed: 100,
-        backDelay: 200,
-        loop: true,
-        showCursor: false
-      })
+        var typed = new Typed(".auto-type",{
+            strings: ["dumplingnews","hadurimcn","southkoreannetwork","mbtizzal","sajuwiki","mbtimeme"],
+            typeSpeed: 50,
+            backSpeed: 100,
+            backDelay: 200,
+            loop: true,
+            showCursor: false
+        })
     </script>
 
 </body>
-
-
-
-
 </html>

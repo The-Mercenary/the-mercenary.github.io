@@ -171,7 +171,7 @@ html::before{
 	background-repeat:no-repeat;
 	background-position:center;
 	z-index:100000;
-  border: 3rem solid;
+  border: 3.5rem solid;
   border-color:#d8d8be #eeeee3 #dfdfcb;
 	pointer-events:none;
 }
@@ -198,8 +198,8 @@ body{
 }
 
 a:hover, a:active, .blog-entry .kudos-btn:hover, .blog-entry .kudos-btn:active{
-	color:#FFFFFF;
-	background-color:#CCCCCC!important;
+	color:#bfe586;
+	background-color:rgba(255,255,255,0.2);
 	text-decoration:none!important;
 }
 
@@ -292,18 +292,18 @@ button{
     font-size:1.5rem;
     line-height:1.24;
   }
-  
+  .footer-container{
+    position:absolute;bottom:4rem;text-align: center;z-index: 8;
+  }
   .footer{
     color:#979fb1;
     font-size:0.75rem;
-    margin-top:6rem;
   }
 
   @media screen and (max-width:1064px){
     html::before{
-      border:1rem solid;
+      border:3.5rem solid;
       border-color:#d8d8be #eeeee3 #dfdfcb;
-
     }
     
     .container{
@@ -318,9 +318,16 @@ button{
     .input-cursor{
       display:inline-block;
     }
+    .footer-container{
+      position:absolute;bottom:4rem;text-align: center;z-index: 8;
+    }
     }
 
     @media screen and (max-width:520px){
+      html::before{
+        border:3.5rem solid;
+        border-color:#d8d8be #eeeee3 #dfdfcb;
+      }
       p{
         font-size:0.75rem;
       }
@@ -332,8 +339,11 @@ button{
         font-size:0.875rem;
         line-height:1;
       }
+
+    .footer-container{
+      position:absolute;bottom:4rem;text-align: center;z-index: 8;
+    }
      .footer {
       font-size:0.75rem;
-      margin-bottom:2rem;
      }
       }
