@@ -1,19 +1,21 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="The Mercenary is a collection of automated solutions capable of generating fully passive earnings. Each Mercenary's 'Squad' completes tasks at the level of a single startup team.">
+    <meta name="description"
+        content="The Mercenary is a collection of automated solutions capable of generating fully passive earnings. Each Mercenary's 'Squad' completes tasks at the level of a single startup team.">
     <meta name="author" content="C.B. Lee">
     <meta name="generator" content="Hugo 0.88.1">
-    <meta content='#111314' name='theme-color'/>
-    <meta content='website' property='og:type'/>
-    <meta content='https://themercenary.org' property='og:url'/>
-    <meta content='The Mercenary' property='og:title'/>
-    <meta content='assets/brand/og.png' property='og:image'/>
-    <meta content='We are the Mercenary.' property='og:description'/>
-    <meta content='The Mercenary' property='og:site_name'/>
-    <meta content='en_US' property='og:locale'/>
+    <meta content='#111314' name='theme-color' />
+    <meta content='website' property='og:type' />
+    <meta content='https://themercenary.org' property='og:url' />
+    <meta content='The Mercenary' property='og:title' />
+    <meta content='assets/brand/og.png' property='og:image' />
+    <meta content='We are the Mercenary.' property='og:description' />
+    <meta content='The Mercenary' property='og:site_name' />
+    <meta content='en_US' property='og:locale' />
 
     <link rel="shortcut icon" href="assets/ico/favicon.png" type="image/png">
 
@@ -25,88 +27,24 @@
     <link href="style.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
 
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .spline-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0; /* Behind all content */
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            color: white; /* Text color to stand out on the background */
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            z-index: 9999; /* On top of other elements */
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
-            backdrop-filter:blur(0.5rem);
-        }
-
-        .modal-content {
-            background-color: #111314;
-            display:flex;
-            flex-direction: column;
-            margin: 16% auto;
-            padding: 2rem 1.5rem;
-            border-radius: 1rem;
-            width: 80%;
-            max-width: 400px; /* Not too wide */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .modal-head{
-            display:flex;
-            flex-direction: row-reverse;
-            justify-content: space-between;
-            align-items:center;
-            padding-bottom:1rem;
-            border-bottom: 1px solid;
-        }
-
-        .modal-content h3 {
-            margin-top: 0;
-        }
-
-        .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-    </style>
 </head>
-  
+
 <body>
     <!-- Background Spline Viewer -->
     <spline-viewer class="spline-bg" url="https://prod.spline.design/2SHTYdLQJoCx1LhN/scene.splinecode"></spline-viewer>
 
     <div class="footer-container">
         <div class="container">
-            <p class="footer">Copyright (c) <script>document.write(new Date().getFullYear())</script>. The Mercenary</p>
-            <p class="footer"><a id="our-projects-btn" href="#">our projects</a> | <a href="mailto:themercenary@duck.com">contact us</a></p>
+            <p class="footer">Copyright (c)
+                <script>document.write(new Date().getFullYear())</script>. The Mercenary
+            </p>
+            <p class="footer"><a id="our-projects-btn" href="#">our projects</a> | <a
+                    href="mailto:themercenary@duck.com">contact us</a></p>
         </div>
     </div>
 
@@ -114,20 +52,21 @@
     <div id="projects-modal" class="modal">
         <div class="modal-content">
             <div class="modal-head">
-            <span class="close-btn" id="close-modal">&times;</span>
-            <h3>Our Projects</h3></div>
+                <span class="close-btn" id="close-modal">&times;</span>
+                <h3>Our Projects</h3>
+            </div>
             <ul>
                 <li><a href="https://dumpling.news" target="_blank">Daily Dumpling</a></li>
                 <li>The Joosul Workshop (MCN)</li>
                 <li><a href="https://southkoreannetwork.com" target="_blank">South Korean Network</a></li>
                 <li>That Dude (MacOS App)</li>
-                <li><a href="https://southkoreannetwork.com" target="_blank">YDP Pawnshop</a></li>
+                <li><a href="https://oldbutgoldgadgets.github.io/" target="_blank">YDP Pawnshop</a></li>
             </ul>
         </div>
     </div>
 
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.32/build/spline-viewer.js"></script>
-  
+
     <script>
         // Get the modal
         const modal = document.getElementById('projects-modal');
@@ -139,21 +78,22 @@
         const closeBtn = document.getElementById('close-modal');
 
         // When the user clicks the button, open the modal
-        btn.onclick = function() {
+        btn.onclick = function () {
             modal.style.display = 'block';
         }
 
         // When the user clicks on <span> (x), close the modal
-        closeBtn.onclick = function() {
+        closeBtn.onclick = function () {
             modal.style.display = 'none';
         }
 
         // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target === modal) {
                 modal.style.display = 'none';
             }
         }
     </script>
 </body>
+
 </html>
