@@ -130,12 +130,6 @@
   }
 }
 
-ul{
- padding:1rem 0;
- margin:0;
-}
-
-
 body::after {
   content: " ";
   display: block;
@@ -190,10 +184,11 @@ html{
   height:100%;
   overflow:hidden;
 }
+
 body{
   filter: grayscale(100%) sepia(100%) hue-rotate(75deg);
 	background-color:#212121;
-  color:#bfe586;
+  color:#979fb1;
   font-size: 0.875rem;
   display: flex;
   justify-content: center;
@@ -205,6 +200,10 @@ body{
 
 .container{
 	margin:0!important;
+}
+
+a {
+  color:#737e8a;
 }
 
 a:hover, a:active, .blog-entry .kudos-btn:hover, .blog-entry .kudos-btn:active{
@@ -247,6 +246,16 @@ nav .top, button, label, .links a, footer p{
 	color:#FFF!important;
 	background-color:#999;
 }
+
+ul{
+  padding:1rem 0;
+  margin:0;
+ }
+ 
+ li{
+   display:block;
+ }
+
 .search-wrapper input{
 	background-color: #222222;
 	border: 1px solid #FFF;
