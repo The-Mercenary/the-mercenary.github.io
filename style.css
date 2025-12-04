@@ -243,10 +243,38 @@ body {
   /* animation: textShadow 0.8s infinite; */
 }
 
-.container {
+.container-hero {
   margin: 0 !important;
   position: relative;
+  color: #f1f2f3;
+  text-shadow: 3px 4px 5px #111314;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   z-index: 1;
+}
+
+.container-hero h1{
+  margin: 1rem 0 0 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.container-hero h2{
+  margin-top: 0.5rem 0 0 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.container-hero p{
+  margin-top: 0.5rem 0 0 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.img-hero-md {
+  height: 4rem;
+  
 }
 
 a {
@@ -370,18 +398,6 @@ button {
     border-color: #d8d8be #eeeee3 #dfdfcb;
   }
 
-  .typer {
-    display: block;
-  }
-
-  .auto-type {
-    display: inline-block;
-  }
-
-  .input-cursor {
-    display: inline-block;
-  }
-
   .footer-container {
     position: absolute;
     bottom: 4rem;
@@ -401,11 +417,6 @@ button {
 
   p {
     font-size: 0.75rem;
-  }
-
-  .input-cursor {
-    width: 0.875rem;
-    height: 1.25rem;
   }
 
   .command {
