@@ -244,8 +244,9 @@ body {
 }
 
 .container-hero {
-  margin: 0 !important;
+  margin: 0 1.5rem!important;
   position: relative;
+  text-align:center;
   color: #f1f2f3;
   text-shadow: 3px 4px 5px #111314;
   display: flex;
@@ -262,12 +263,12 @@ body {
 
 .container-hero h2{
   margin-top: 0.5rem 0 0 0;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 
 .container-hero p{
-  margin-top: 0.5rem 0 0 0;
+  margin-top: 1rem 0 0 0!important;
   font-size: 0.875rem;
   font-weight: 500;
 }
