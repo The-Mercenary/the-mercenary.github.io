@@ -357,16 +357,36 @@ button {
 }
 
 .modal-content li {
+  display:flex;
   margin: 0 0 0.75rem 0;
   padding: 0.75rem;
   border: 2px #737e8a solid;
   border-radius: 8px;
+  flex-direction: row;
+  justify-content:flex-start;
 }
-
+.modal-list-row-textgroup {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
 .modal-content a {
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1.25rem;
+  color: #dee0e3;
   font-weight: bold;
+}
+
+.modal-content p{
+font-size: 0.875rem;
+color: #88929c;
+}
+
+.modal-list-row {
+  height: 48px;
+  width: 48px;
+  margin-right: 1rem;
 }
 
 .close-btn {
@@ -376,6 +396,9 @@ button {
   font-weight: bold;
   cursor: pointer;
 }
+
+
+
 
 /* Spline Styles */
 .spline-bg {
