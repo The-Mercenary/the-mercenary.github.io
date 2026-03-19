@@ -313,34 +313,43 @@ button {
 }
 
 /* Modal Styles */
+body.modal-open {
+  overflow: hidden;
+}
+
 .modal {
+  --modal-space-top: max(1rem, env(safe-area-inset-top));
+  --modal-space-inline: clamp(1rem, 4vw, 2rem);
+  --modal-space-bottom: max(1rem, env(safe-area-inset-bottom));
   display: none;
-  /* Hidden by default */
   position: fixed;
+  inset: 0;
   z-index: 9999;
-  /* On top of other elements */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: var(--modal-space-top) var(--modal-space-inline) var(--modal-space-bottom);
   background-color: rgba(0, 0, 0, 0.6);
-  /* Semi-transparent background */
   backdrop-filter: blur(0.5rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.modal.is-open {
+  display: flex;
 }
 
 .modal-content {
   background-color: #111314;
   display: flex;
   flex-direction: column;
-  top: 50%;
-  transform: translate(0, -50%);
-  margin:0 auto;
+  margin: auto;
   padding: 2rem 1.5rem;
   border-radius: 1rem;
-  width: 80%;
-  max-width: 600px;
-  /* Not too wide */
+  width: min(100%, 600px);
+  max-height: min(720px, calc(100vh - var(--modal-space-top) - var(--modal-space-bottom)));
+  max-height: min(720px, calc(100dvh - var(--modal-space-top) - var(--modal-space-bottom)));
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
 .modal-head {
@@ -348,8 +357,21 @@ button {
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: flex-end;
+  gap: 1rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid;
+  flex-shrink: 0;
+}
+
+.modal-body {
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+}
+
+.modal-body ul {
+  padding: 1rem 0 0;
 }
 
 .modal-content h3 {
@@ -391,10 +413,32 @@ color: #88929c;
 
 .close-btn {
   color: #aaa;
-  float: right;
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+
+@media (max-width: 767px) {
+  .modal {
+    align-items: flex-start;
+  }
+
+  .modal-content {
+    padding: 1.25rem 1rem;
+  }
+
+  .modal-content li {
+    align-items: flex-start;
+  }
+}
+
+@media (min-width: 768px) {
+  .modal {
+    --modal-space-top: max(2rem, env(safe-area-inset-top));
+    --modal-space-bottom: max(2rem, env(safe-area-inset-bottom));
+  }
 }
 
 

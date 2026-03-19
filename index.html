@@ -55,29 +55,31 @@
     </div>
 
     <!-- The Modal -->
-    <div id="projects-modal" class="modal">
-        <div class="modal-content">
+    <div id="projects-modal" class="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="projects-modal-title">
             <div class="modal-head">
-                <span class="close-btn" id="close-modal">&times;</span>
-                <h3>Deployment</h3>
+                <button type="button" class="close-btn" id="close-modal" aria-label="Close deployment modal">&times;</button>
+                <h3 id="projects-modal-title">Deployment</h3>
             </div>
-            <ul>
-                <li><img class="modal-list-row" src = "assets/img/deployment-dailydumpling.png"/>
-                    <div class='modal-list-row-textgroup'><a href="https://dumpling.news" target="_blank">Daily Dumpling</a>
-                        <p>Digest real-time world news as quickly and easily as enjoying a dumpling.</p></div></li>
-                <li><img class="modal-list-row" src = "assets/img/deployment-desiredcatalog.png"/>
-                    <div class='modal-list-row-textgroup'><a href="https://www.instagram.com/desiredcatalog" target="_blank">Desired Catalog</a>
-                        <p>A curated catalog of objects of desire, because gems are something almost everyone longs for.</p></div></li>
-                <li><img class="modal-list-row" src = "assets/img/deployment-stellarid.png"/>
-                    <div class='modal-list-row-textgroup'><a href="https://stellar-id.com" target="_blank">Stellar ID</a>
-                        <p>Where saju and social connection come together, turning fate and relationships into something tangible.</p></div></li>
-                <li><img class="modal-list-row" src = "assets/img/deployment-southkoreannetwork.png"/>
-                    <div class='modal-list-row-textgroup'><a href="https://southkoreannetwork.com" target="_blank">South Korean Network</a>
-                        <p>A community-driven platform that shares and discusses stories, issues, and perspectives from South Korea with the world.</p></div></li>
-                <li><img class="modal-list-row" src = "assets/img/deployment-vitalsignal.png"/>
-                    <div class='modal-list-row-textgroup'><a href="https://vitalsignal.github.io" target="_blank">The Vital Signal</a>
-                        <p>Get the latest developments from the global medical world, delivered fast.</p></div></li>
-            </ul>
+            <div class="modal-body">
+                <ul>
+                    <li><img class="modal-list-row" src = "assets/img/deployment-dailydumpling.png"/>
+                        <div class='modal-list-row-textgroup'><a href="https://dumpling.news" target="_blank">Daily Dumpling</a>
+                            <p>Digest real-time world news as quickly and easily as enjoying a dumpling.</p></div></li>
+                    <li><img class="modal-list-row" src = "assets/img/deployment-desiredcatalog.png"/>
+                        <div class='modal-list-row-textgroup'><a href="https://www.instagram.com/desiredcatalog" target="_blank">Desired Catalog</a>
+                            <p>A curated catalog of objects of desire, because gems are something almost everyone longs for.</p></div></li>
+                    <li><img class="modal-list-row" src = "assets/img/deployment-stellarid.png"/>
+                        <div class='modal-list-row-textgroup'><a href="https://stellar-id.com" target="_blank">Stellar ID</a>
+                            <p>Where saju and social connection come together, turning fate and relationships into something tangible.</p></div></li>
+                    <li><img class="modal-list-row" src = "assets/img/deployment-southkoreannetwork.png"/>
+                        <div class='modal-list-row-textgroup'><a href="https://southkoreannetwork.com" target="_blank">South Korean Network</a>
+                            <p>A community-driven platform that shares and discusses stories, issues, and perspectives from South Korea with the world.</p></div></li>
+                    <li><img class="modal-list-row" src = "assets/img/deployment-vitalsignal.png"/>
+                        <div class='modal-list-row-textgroup'><a href="https://vitalsignal.github.io" target="_blank">The Vital Signal</a>
+                            <p>Get the latest developments from the global medical world, delivered fast.</p></div></li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -93,22 +95,41 @@
         // Get the <span> element that closes the modal
         const closeBtn = document.getElementById('close-modal');
 
-        // When the user clicks the button, open the modal
-        btn.onclick = function () {
-            modal.style.display = 'block';
+        const openModal = function () {
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-open');
         }
 
-        // When the user clicks on <span> (x), close the modal
-        closeBtn.onclick = function () {
-            modal.style.display = 'none';
+        const closeModal = function () {
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
         }
+
+        // When the user clicks the button, open the modal
+        btn.addEventListener('click', function (event) {
+            event.preventDefault();
+            openModal();
+        });
+
+        // When the user clicks on the close button, close the modal
+        closeBtn.addEventListener('click', function () {
+            closeModal();
+        });
 
         // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
+        window.addEventListener('click', function (event) {
             if (event.target === modal) {
-                modal.style.display = 'none';
+                closeModal();
             }
-        }
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+                closeModal();
+            }
+        });
     </script>
 </body>
 
