@@ -318,7 +318,7 @@ body.modal-open {
 }
 
 .modal {
-  --modal-space-top: max(1rem, env(safe-area-inset-top));
+  --modal-space-top: max(2rem, env(safe-area-inset-top));
   --modal-space-inline: clamp(1rem, 4vw, 2rem);
   --modal-space-bottom: max(1rem, env(safe-area-inset-bottom));
   display: none;
@@ -357,7 +357,7 @@ body.modal-open {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid;
