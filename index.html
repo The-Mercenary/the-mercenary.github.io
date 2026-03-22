@@ -9,6 +9,9 @@
     <meta name="author" content="C.B. Lee">
     <meta name="generator" content="Hugo 0.88.1">
     <meta content='#111314' name='theme-color' />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="The Mercenary">
     <meta content='website' property='og:type' />
     <meta content='The Mercenary' property='og:title' />
     <meta content='assets/brand/og.png' property='og:image' />
@@ -16,7 +19,64 @@
     <meta content='The Mercenary' property='og:site_name' />
     <meta content='en_US' property='og:locale' />
 
-    <link rel="shortcut icon" href="assets/ico/favicon.png" type="image/png">
+    <link rel="icon" href="assets/brand/logo.png" type="image/png" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="assets/brand/logo(light).png" type="image/png" media="(prefers-color-scheme: dark)">
+    <link rel="shortcut icon" href="assets/brand/logo.png" type="image/png" media="(prefers-color-scheme: light)">
+    <link rel="shortcut icon" href="assets/brand/logo(light).png" type="image/png" media="(prefers-color-scheme: dark)">
+
+    <script>
+        (function () {
+            var themeAssets = {
+                light: {
+                    touchIcon: 'assets/brand/icon-light-180.png',
+                    manifest: 'manifest-light.webmanifest'
+                },
+                dark: {
+                    touchIcon: 'assets/brand/icon-dark-180.png',
+                    manifest: 'manifest-dark.webmanifest'
+                }
+            };
+
+            function ensureLink(id, rel) {
+                var link = document.getElementById(id);
+
+                if (!link) {
+                    link = document.createElement('link');
+                    link.id = id;
+                    link.rel = rel;
+                    document.head.appendChild(link);
+                }
+
+                return link;
+            }
+
+            function applyThemeAssets(isDarkMode) {
+                var assets = isDarkMode ? themeAssets.dark : themeAssets.light;
+                var touchIcon = ensureLink('theme-apple-touch-icon', 'apple-touch-icon');
+                var manifest = ensureLink('theme-manifest', 'manifest');
+
+                touchIcon.href = assets.touchIcon;
+                touchIcon.setAttribute('sizes', '180x180');
+                manifest.href = assets.manifest;
+            }
+
+            var colorScheme = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+            var syncThemeAssets = function (event) {
+                var isDarkMode = event ? event.matches : colorScheme && colorScheme.matches;
+                applyThemeAssets(!!isDarkMode);
+            };
+
+            syncThemeAssets();
+
+            if (colorScheme) {
+                if (colorScheme.addEventListener) {
+                    colorScheme.addEventListener('change', syncThemeAssets);
+                } else if (colorScheme.addListener) {
+                    colorScheme.addListener(syncThemeAssets);
+                }
+            }
+        }());
+    </script>
 
 
     <title>The Mercenary</title>
