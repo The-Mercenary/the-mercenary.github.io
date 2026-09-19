@@ -8,7 +8,7 @@ font = TTFont(root / '.qa/inflory/font-source/PretendardVariable.woff2')
 options = subset.Options()
 options.flavor = 'woff2'
 subsetter = subset.Subsetter(options=options)
-subsetter.populate(text=(root / '.site-src/inflory/content.mjs').read_text() + ''.join(map(chr, range(32, 127))) + '↗')
+subsetter.populate(text=''.join(path.read_text() for path in (root / '.site-src/inflory').glob('*.mjs')) + ''.join(map(chr, range(32, 127))) + '↗')
 subsetter.subset(font)
 # Modified font cannot retain the reserved name Pretendard. Keep copyright/license.
 names = {1:'Inflory Sans', 2:'Regular', 3:'InflorySans-Subset-1.0', 4:'Inflory Sans', 6:'InflorySans-Regular', 16:'Inflory Sans', 17:'Regular'}

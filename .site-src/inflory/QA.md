@@ -1,13 +1,15 @@
-# Release QA — 2026-09-19
+# Application release QA — 2026-09-19
 
-Local Chromium + Playwright: 23 automated scenarios passed.
+26 Chromium / Playwright scenarios passed with node .qa/inflory/forms-check.mjs.
 
-- 16 combinations: en / ko / ja / zh-hans × 320 / 390 / 768 / 1440px. One H1, canonical, five alternate-language links, no document horizontal overflow, correct selected plan, unavailable submission without GA, Escape closes dialog.
-- 4 locale cases: ko-KR, ja-JP, zh-TW → available Simplified Chinese, de-DE → English. Manual English selection survives another neutral entry. Safe UTM preserved; unrelated email query discarded.
-- 3 isolated analytics cases: consent + client callback, Google script blocked, callback timeout. No Google request before consent; no backfilled pre-consent clicks; no submitted success on missing/failed configuration; per-tab repeat suppression; event transmission stops after withdrawal. All external requests intercepted: zero real GA test traffic.
-- Desktop English/Korean, mobile English/Japanese and original 1200×630 share image visually inspected. Local screenshots generated for each locale at 390 and 1440px.
-- Runtime dependencies: self-hosted static JS/CSS, 91KB-class OFL font subset and approximately 60KB OG image. No external font request or tracking script before consent.
+- 16 locale/viewport combinations: en, ko, ja, zh-hans × 320, 390, 768, 1440px. Landing CTA navigates to its localized form; plan quantity is preserved; 249 country/region options; five platform checkboxes; seven exclusive volume ranges; no horizontal overflow.
+- 8 submission cases: every language with optional launch-email consent both unchecked and checked. Invalid name/email, missing platform or missing privacy acknowledgement prevents submission. Two platforms and exactly one range serialize correctly. No CAPTCHA disabling and no applicant auto-response fields.
+- 1 provider network-failure case: no false success/return page.
+- 1 browser-language entry and manual form-language switch.
+- All QA POST requests intercepted; no applicant emails sent. No third-party request from form before submission. No applicant fields stored by application code. Korean mobile and English desktop screenshots visually reviewed.
 
-Not verified: real GA4 receipt or reporting (no measurement ID), Search Console ownership/indexing, native-speaker editorial approval, Safari/iOS-specific rendering, real demand, supply quality, legality/platform permission, unit economics, trademark availability. This release is a concept preview, not a live subscription business or contact waitlist.
+Separate live integration checks: one synthetic activation request initially returned activation-required. The operator confirmed activation. One subsequent labeled test returned HTTP 200, success="true", message="The form was submitted successfully." Provider acceptance is verified; final mailbox receipt is separately awaiting operator confirmation. Both tests are excluded from demand metrics and launch lists.
 
-Reproduce: `node .qa/inflory/check.mjs`. This check regenerates the OG image. Build translated HTML first with `node .site-src/inflory/build.mjs`.
+Local validation is not server-side enforcement: the public static endpoint can be posted to directly. Provider CAPTCHA/honeypot handle basic spam; treat all incoming fields as untrusted. Return-page access is not proof of a submission. Email ownership, delivery, provider localization, legal compliance and unsubscribe processing are not certified by these tests.
+
+Prior no-contact modal release is superseded; use the current form check entrypoint.

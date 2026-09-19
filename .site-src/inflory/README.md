@@ -1,64 +1,52 @@
-# INFLORY — pre-launch concept
+# INFLORY — pre-launch application
+Public site: https://themercenary.org/inflory/ · Repository: The-Mercenary/the-mercenary.github.io.
+Isolated checkout: /home/chungbok/Projects/Alpha-System/inflory-site.
+Keep the corporate homepage and the dirty checkout at /home/chungbok/Projects/The-Mercenary unchanged.
 
-Published destination: https://themercenary.org/inflory/ in `The-Mercenary/the-mercenary.github.io`.
-Local isolated checkout: `/home/chungbok/Projects/Alpha-System/inflory-site`.
-Do not deploy unrelated modifications from `/home/chungbok/Projects/The-Mercenary`.
+## Current flow
+Landing CTA → /inflory/{en|ko|ja|zh-hans}/apply/ → native HTTPS POST to FormSubmit → provider security check → localized /thanks/.
+This is a real contact application, replacing the original no-contact GA4 interest modal. The site still does not fulfill followers or take payments.
 
-## What this is / is not
+Required: name (trimmed, 1–80 characters), ISO residence country/region, syntactically valid email (max 254), at least one platform, exactly one monthly quantity range, processing acknowledgement. Platforms: Facebook Page / Instagram / YouTube / X / Other; multiple checked entries use separate payload keys. Monthly ranges: 10–50, 51–100, 101–300, 301–500, 501–1,000, 1,001–3,000, 3,001+. These are a total across platforms, not promised deliveries.
 
-A static, four-language concept test for proposed 30-day distributed Instagram follower subscriptions. Proposed prices: Start $19 / 100, Rhythm $49 / 300, Presence $99 / 700, all USD per month. Prices, taxes, supply quality, retention, and launch are not validated. INFLORY is a provisional brand, not trademark clearance.
+Launch notification consent is OPTIONAL, unchecked by default, independent of the required fields and GA. All applications go to the operator; only launch_email_consent=yes can be considered for a later notification. There is no auto-reply, applicant campaign sender, paid subscription, or automatic unsubscribe database in this release.
 
-No follower fulfillment, payments, account credentials, email contacts, or launch notifications. No fake testimonials, demand figures, organic-growth claims, or retention/account-safety guarantees. The page explains third-party supply and platform-policy risks. Demand signals do not validate the service's permissibility or economics.
+## Email activation and delivery
+Recipient: themercenary@duck.com through FormSubmit. No SMTP or private API keys in static code. Provider CAPTCHA remains enabled; do not add _captcha=false. A honeypot adds a simple spam signal. The submitter may temporarily see a provider-owned security page whose language is controlled by FormSubmit, not our translations.
 
-**GA4 is NOT activated:** `inflory/config.js` has an empty `gaMeasurementId`. The interest modal works for browsing, but submission is visibly unavailable. There is no fallback that pretends to save a signup. Do not drive a paid acquisition test until collection is connected and verified.
+On 2026-09-19, a synthetic setup request initially returned activation-required. The operator then confirmed clicking Activate Form. One subsequent labeled test returned HTTP 200, success="true", message="The form was submitted successfully." The provider now accepts delivery requests. Actual final mailbox arrival is a separate check; the assistant has no inbox access and has asked the operator to confirm. Exclude both setup tests from demand and launch-email lists. Do not start acquisition until inbox receipt is confirmed.
 
-## Build and local checks
+After submit we do not display a local success before provider handling. The return page states that it cannot verify mailbox delivery. Native POST network/provider failures remain provider/browser errors; browser Back allows retry. Resubmission may duplicate messages, so deduplicate by normalized email and keep the latest consent record; do not count setup tests.
 
+## Data handling and launch-email operation
+Fields and consent wording/version are delivered in the message, with client-generated submission time and a retention review date. These are self-reported records, not tamper-proof audit evidence. Personal fields are never in URLs, analytics events, source control, or application-managed local/session storage. The browser may still offer its own autocomplete.
+
+Our operator retention policy shown on the form is at most 12 months or earlier deletion request. This is an OPERATOR WORKFLOW, not an automatic deletion service: review the retention_review_due field, delete expired applications from the forwarding mailbox and other copies, and process access/correction/deletion requests. FormSubmit separately documents 30-day archives. The notice identifies FormSubmit, cross-border processing possibility, and the Duck forwarding mailbox. Provider processing locations, transfer safeguards and contractual requirements need review for the actual target jurisdictions before scaled collection. No blanket global legal-compliance claim is made.
+
+Opt-out route: email themercenary@duck.com, including the mailto link on every form/return page. It is a REQUEST processed by the operator, not an instant server-side unsubscribe action. Before sending any launch email:
+- include ONLY explicit yes consents, excluding setup tests, withdrawals, duplicates and unverified/abusive entries;
+- confirm email ownership or use a suitable double-opt-in email platform before bulk campaigns;
+- include clear sender identity, applicable business address and advertising disclosures, and a working reply-to withdrawal mechanism;
+- include localized unsubscribe-by-reply text, process opt-outs promptly and maintain suppression so deleted/withdrawn recipients are not reimported;
+- do not imply that this form alone implements a campaign or an automatic one-click unsubscribe system.
+
+Official references: https://formsubmit.co/documentation (activation, CAPTCHA, redirect, 30-day archive), https://formsubmit.co/privacy.pdf (processing policy), https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business (US commercial email opt-out obligations; other jurisdictions differ).
+
+## Analytics and SEO
+GA4 remains unconfigured in inflory/config.js. Landing consent/click/page events remain available after a G-ID is supplied. Application and return pages intentionally do not import analytics.js or load Google Analytics, even if landing consent exists. Email registration does NOT depend on analytics consent or a G-ID.
+Legacy interest_submit events are retired: do not equate a CTA click with a registered applicant. Use received and deduplicated operator messages for application counts; this release does not establish user-level joins to GA.
+Landing pages retain locale canonical/hreflang, WebPage metadata, sitemap, social image and browser-language selection. Application/return pages are noindex,follow and are not in the sitemap. Explicit language selection is supported; form inputs are deliberately not persisted between languages.
+
+## Build and QA
+Run:
 ```sh
 node .site-src/inflory/build.mjs
 npm ci --prefix .qa/inflory
 node .qa/inflory/check.mjs
 ```
+Node 22+, Chromium (/snap/bin/chromium; CHROMIUM_PATH override).
+26 browser scenarios: four languages × four widths, validation, multiselect, optional opt-in both states, payload metadata, native POST redirect, error path, no external requests before submit, language routing. Submission requests are intercepted; these tests send no applicant emails.
+Sources: content.mjs (base landing copy), waitlist-content.mjs (form copy and landing overrides), countries.mjs (ISO code snapshot), build.mjs + waitlist-page.mjs (static generators).
+Runtime: app.js for landing; waitlist.js and waitlist.css for forms. Generated HTML is committed.
 
-Node 22+, Chromium (`CHROMIUM_PATH` override, default `/snap/bin/chromium`). QA starts and closes a local server. It tests 320/390/768/1440px in all four languages, canonical/hreflang, language routing, selection, missing configuration, consent, blocked/timeout handling, duplicate suppression, and withdrawal. Analytics tests intercept every request; **no production analytics calls**. Screenshots are local and ignored by Git.
-
-Sources: `content.mjs` (translations), `build.mjs` (static HTML generator). Runtime: `inflory/app.js`, `analytics.js`, `locale-router.js`, `config.js`, `style.css`. No framework/build dependency at runtime. Generated HTML is committed and served by GitHub Pages. Do not edit only the generated HTML.
-
-Self-hosted font: modified, renamed **Inflory Sans**, a subset derived from [Pretendard v1.3.9](https://github.com/orioncactus/pretendard/tree/v1.3.9); OFL copyright/license at `inflory/assets/OFL-Pretendard.txt`. Japanese and Chinese use the device's CJK sans-serif fallback where the font lacks glyphs. No external font CDN is required by visitors. To regenerate after adding Korean copy, download the pinned upstream variable WOFF2 to `.qa/inflory/font-source/PretendardVariable.woff2`, install `fonttools[woff]` in an isolated environment, and run `subset-font.py`. Open Graph art is original HTML/CSS rendered by the QA script, not downloaded stock art.
-
-## Activate a new GA4 property
-
-1. Create a separate GA4 property, e.g. `INFLORY — Prelaunch`. Suggested reporting timezone: Asia/Seoul; currency: USD. Create a **Web** stream for `https://themercenary.org`, named `INFLORY landing` (subdirectory routing is in the page code).
-2. Copy the stream's **Measurement ID**, beginning `G-`, into `inflory/config.js` → `gaMeasurementId`. This is a public tag ID, NOT the numeric property ID or an API secret. Never commit OAuth tokens or service-account keys.
-3. Disable enhanced measurement for this stream initially. This app manually emits page views and events, and sanitizes URL/referrer fields. Do not add a second GTM/gtag snippet. Keep Google Signals and advertising features off; review data retention (suggested initial setting: 2 months), operator/contact details, regional consent and disclosure requirements before active collection. This implementation is not a legal compliance certification.
-4. Re-run QA, deploy config, then verify **real** events in GA4 Realtime / DebugView. Mock tests do not confirm receipt in a real property. Consent must precede any Google script loading. Rejection or content blocking means no measurement and no interest submission.
-5. Mark `interest_submit` as a **key event**, preferably once per session. This is a preference signal, not a purchase or verified email lead. The browser suppresses repeats within the same tab session, not across devices or determined duplicates.
-6. Create event-scoped custom dimensions for `plan_id`, `page_language`, `platform`, `refill_interest`, `placement`, `experiment_id`, `experiment_version`. Optionally create custom metrics for `plan_price_usd` and `plan_quantity` (do not treat as revenue).
-7. Register the sitemap in Search Console for the verified domain or URL-prefix property: `https://themercenary.org/inflory/sitemap.xml`. No Search Console account action has been performed automatically.
-
-Official references: [GA4 custom events](https://developers.google.com/analytics/devguides/collection/ga4/events), [localized page annotations](https://developers.google.com/search/docs/specialty/international/localized-versions), [locale-adaptive pages](https://developers.google.com/search/docs/specialty/international/locale-adaptive-pages).
-
-## Measurement and interpretation
-
-Events: `page_view`, `landing_view`, `view_plans`, `cta_click`, `select_plan`, `interest_open`, `interest_form_ready`, `interest_submit`, `faq_open`, `language_change`.
-
-- CTA rate: sessions with `cta_click` / sessions with `landing_view` in the same consented cohort and time range.
-- Interest rate: sessions with `interest_submit` / sessions with `landing_view` in the same cohort. Also report counts, acquisition source, language, chosen plan, and refill interest.
-- These denominators are **measured, consenting sessions**, not all actual visitors. GA4 alone cannot determine total page views including declined/blocked visitors. Do not divide raw event counts and call that a user conversion rate.
-- If a visitor grants consent only inside the form, earlier clicks are not backfilled. `interest_form_ready` records the now-observable state. Use an open funnel; do not require every prior step or pretend it is a fully observed user journey. Conversion rates are subject to consent-selection bias.
-- No contact fields are collected, but GA4 uses online/cookie identifiers. This is **not guaranteed anonymous** data. No names/emails/handles/passwords in event parameters. UTM values are restricted to 64 ASCII letters/digits/underscore/hyphen; operators must still never put personal data in campaign values. Referrer is reduced to origin, arbitrary query fields and hashes are omitted from measurement.
-- A `gtag` event callback confirms client-side processing only, **not durable server storage**. Ad blocking/network loss may lose responses; retry after a timeout can duplicate an already-processed event. Use GA4 session-based counts conservatively. A contact waitlist later requires a separate consented form and reliable server-side storage.
-- Mainland China and other networks may block Google services. Simplified Chinese translation does not guarantee local GA4 accessibility. If that market matters, choose a separately reviewed first-party collection backend before running the experiment.
-- Sample campaign: `/inflory/?utm_source=instagram&utm_medium=organic&utm_campaign=prelaunch_v1&utm_content=bio`. Country is not inferred from selected language; browser language is only an interface preference.
-
-## Language and SEO behavior
-
-Neutral `/inflory/` renders English HTML then negotiates a supported browser language. Explicit `/en/`, `/ko/`, `/ja/`, `/zh-hans/` URLs do not redirect. Choice is saved locally. Unsupported languages default to English; Chinese variants are offered the available Simplified Chinese edition. No IP geolocation. Native-language footer links remain crawlable and usable without JavaScript.
-
-Four self-canonical static documents, reciprocal `hreflang` plus x-default, localized title/description/Open Graph metadata, one H1 per page, WebPage JSON-LD, project sitemap, root robots sitemap discovery. Root fallback canonical points to English to avoid duplicate content. No fabricated Product/Offer/review structured data. These are technical SEO foundations, not a ranking/indexing guarantee.
-
-## Scope / release checks
-
-Only add `inflory/`, `.site-src/inflory/`, `.qa/inflory/` source files, and the previously absent root `robots.txt`. Exclude QA node_modules, font tooling, screenshots, raw font downloads. Parent home, existing CSS/assets/CNAME remain unchanged. Use a non-forced fast-forward update after checking the current remote parent. Verify deployed language URLs/assets and config separately from local QA.
-
-Brand direction: quiet editorial typography, dark royal green `#123f33`, warm paper `#f7f7f0`, a typographic 30-day calendar. The supplied Imweb collection URL returned HTTP 403 to research access; no claim of exact theme cloning. A manual native-speaker copy review remains advisable before paid campaigns.
+Fonts: modified OFL-licensed Inflory Sans subset derived from Pretendard v1.3.9. Retained license in assets/OFL-Pretendard.txt. Rebuild with subset-font.py after source copy changes; requires pinned upstream font in .qa/inflory/font-source and isolated fonttools[woff]. Original share artwork remains unchanged. Do not publish .qa node_modules, screenshots, font-env or downloaded font sources.

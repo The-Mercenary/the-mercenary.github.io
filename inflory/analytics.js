@@ -87,16 +87,3 @@ export function track(name, params={}) {
   window.gtag('event',name,{...shared(),...params,send_to:config.gaMeasurementId});
   return true;
 }
-
-export async function submitInterest(params) {
-  await grant();
-  return new Promise((resolve,reject)=>{
-    const timeout=setTimeout(()=>reject(new Error('No analytics delivery callback')),7000);
-    track('interest_submit',{...params,event_callback:()=>{
-      clearTimeout(timeout);
-      if(permitted)resolve();else reject(new Error('Consent withdrawn'));
-    }});
-    // This callback means client-side processing completed, NOT durable storage.
-    // A real waitlist requires its own consented, server-acknowledged database.
-  });
-}
