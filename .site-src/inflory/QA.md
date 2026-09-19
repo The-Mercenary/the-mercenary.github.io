@@ -8,7 +8,7 @@
 - 1 browser-language entry and manual form-language switch.
 - All QA POST requests intercepted; no applicant emails sent. No third-party request from form before submission. No applicant fields stored by application code. Korean mobile and English desktop screenshots visually reviewed.
 
-Separate live integration checks: one synthetic activation request initially returned activation-required. The operator confirmed activation. One subsequent labeled test returned HTTP 200, success="true", message="The form was submitted successfully." Provider acceptance is verified; final mailbox receipt is separately awaiting operator confirmation. Both tests are excluded from demand metrics and launch lists.
+Separate live integration checks: one synthetic activation request initially returned activation-required. The operator confirmed activation. One subsequent labeled test returned HTTP 200, success="true", message="The form was submitted successfully." The operator explicitly confirmed receipt of that test email. This verifies provider acceptance and operator-reported mailbox delivery using the documented AJAX API, not a manual end-to-end completion of the native browser CAPTCHA. Both tests are excluded from demand metrics and launch lists.
 
 Local validation is not server-side enforcement: the public static endpoint can be posted to directly. Provider CAPTCHA/honeypot handle basic spam; treat all incoming fields as untrusted. Return-page access is not proof of a submission. Email ownership, delivery, provider localization, legal compliance and unsubscribe processing are not certified by these tests.
 
