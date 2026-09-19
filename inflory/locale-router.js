@@ -18,6 +18,8 @@
     const value = params.get(key);
     if (value && /^[a-zA-Z0-9_-]{1,64}$/.test(value)) url.searchParams.set(key,value);
   }
-  if (['#plans','#about'].includes(location.hash)) url.hash=location.hash;
+  const counts=params.getAll('followers');
+  if(counts.length===1 && /^\d{1,4}$/.test(counts[0]) && Number(counts[0])>=10 && Number(counts[0])<=3000)url.searchParams.set('followers',String(Number(counts[0])));
+  if (['#plans','#allocation','#about'].includes(location.hash)) url.hash=location.hash;
   location.replace(url.href);
 })();

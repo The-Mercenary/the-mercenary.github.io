@@ -3,11 +3,16 @@ Public site: https://themercenary.org/inflory/ · Repository: The-Mercenary/the-
 Isolated checkout: /home/chungbok/Projects/Alpha-System/inflory-site.
 Keep the corporate homepage and the dirty checkout at /home/chungbok/Projects/The-Mercenary unchanged.
 
-## Current flow
+## Current flow — monthly allocation v3
+Pricing cards are removed from the live landing page, metadata and public config. One allocation hero explains the concept, with a native slider (10–3,000, step 1, default 100), localized monthly total and illustrative daily average (monthly amount / 30, up to 2 decimals). It has the single application CTA; header, introductory hero and closing links scroll to this area.
+
+The numeric followers query carries the exact selection into the application, through language changes and back navigation. The form now has a required integer input and synchronized slider instead of coarse radio ranges. monthly_followers in the email payload is an exact integer (e.g. 237), not a range. Invalid or ambiguous inbound query values default to 100; invalid edits block submission. Query values are only accepted as 10–3,000 integers; no contact fields are put in URLs. The daily value is a distribution illustration, not a promise of organic growth or daily follows.
+
+## Application flow
 Landing CTA → /inflory/{en|ko|ja|zh-hans}/apply/ → native HTTPS POST to FormSubmit → provider security check → localized /thanks/.
 This is a real contact application, replacing the original no-contact GA4 interest modal. The site still does not fulfill followers or take payments.
 
-Required: name (trimmed, 1–80 characters), ISO residence country/region, syntactically valid email (max 254), at least one platform, exactly one monthly quantity range, processing acknowledgement. Platforms: Facebook Page / Instagram / YouTube / X / Other; multiple checked entries use separate payload keys. Monthly ranges: 10–50, 51–100, 101–300, 301–500, 501–1,000, 1,001–3,000, 3,001+. These are a total across platforms, not promised deliveries.
+Required: name (trimmed, 1–80 characters), ISO residence country/region, syntactically valid email (max 254), at least one platform, an exact integer monthly quantity from 10 to 3,000, processing acknowledgement. Platforms: Facebook Page / Instagram / YouTube / X / Other; multiple checked entries use separate payload keys. Monthly amount is a total across selected platforms, not promised deliveries.
 
 Launch notification consent is OPTIONAL, unchecked by default, independent of the required fields and GA. All applications go to the operator; only launch_email_consent=yes can be considered for a later notification. There is no auto-reply, applicant campaign sender, paid subscription, or automatic unsubscribe database in this release.
 
@@ -33,7 +38,7 @@ Opt-out route: email themercenary@duck.com, including the mailto link on every f
 Official references: https://formsubmit.co/documentation (activation, CAPTCHA, redirect, 30-day archive), https://formsubmit.co/privacy.pdf (processing policy), https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business (US commercial email opt-out obligations; other jurisdictions differ).
 
 ## Analytics and SEO
-GA4 remains unconfigured in inflory/config.js. Landing consent/click/page events remain available after a G-ID is supplied. Application and return pages intentionally do not import analytics.js or load Google Analytics, even if landing consent exists. Email registration does NOT depend on analytics consent or a G-ID.
+GA4 remains unconfigured in inflory/config.js. Landing consent/click/page events remain available (view_allocation and select_quantity replace the old plan concept) after a G-ID is supplied. Application and return pages intentionally do not import analytics.js or load Google Analytics, even if landing consent exists. Email registration does NOT depend on analytics consent or a G-ID.
 Legacy interest_submit events are retired: do not equate a CTA click with a registered applicant. Use received and deduplicated operator messages for application counts; this release does not establish user-level joins to GA.
 Landing pages retain locale canonical/hreflang, WebPage metadata, sitemap, social image and browser-language selection. Application/return pages are noindex,follow and are not in the sitemap. Explicit language selection is supported; form inputs are deliberately not persisted between languages.
 
@@ -45,8 +50,8 @@ npm ci --prefix .qa/inflory
 node .qa/inflory/check.mjs
 ```
 Node 22+, Chromium (/snap/bin/chromium; CHROMIUM_PATH override).
-26 browser scenarios: four languages × four widths, validation, multiselect, optional opt-in both states, payload metadata, native POST redirect, error path, no external requests before submit, language routing. Submission requests are intercepted; these tests send no applicant emails.
-Sources: content.mjs (base landing copy), waitlist-content.mjs (form copy and landing overrides), countries.mjs (ISO code snapshot), build.mjs + waitlist-page.mjs (static generators).
-Runtime: app.js for landing; waitlist.js and waitlist.css for forms. Generated HTML is committed.
+42 browser scenarios: four languages × four widths, validation, multiselect, optional opt-in both states, payload metadata, native POST redirect, error path, no external requests before submit, language routing, minimum/maximum/keyboard slider values, exact 237-person handoff and POST, malformed or repeated quantity query parameters, invalid numeric edits, language and back-navigation continuity. Submission requests are intercepted; these tests send no applicant emails.
+Sources: content.mjs (base landing copy), allocation-copy.mjs (allocation hero translations), waitlist-content.mjs (form copy and landing overrides), countries.mjs (ISO code snapshot), build.mjs + waitlist-page.mjs (static generators).
+Runtime: allocation.js is the shared count parser, bounds and average formatter; allocation.css styles the hero and range controls. app.js for landing; waitlist.js and waitlist.css for forms. Generated HTML is committed.
 
 Fonts: modified OFL-licensed Inflory Sans subset derived from Pretendard v1.3.9. Retained license in assets/OFL-Pretendard.txt. Rebuild with subset-font.py after source copy changes; requires pinned upstream font in .qa/inflory/font-source and isolated fonttools[woff]. Original share artwork remains unchanged. Do not publish .qa node_modules, screenshots, font-env or downloaded font sources.
