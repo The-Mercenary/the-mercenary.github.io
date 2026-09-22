@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://themercenary.org/inflory/sitemap.xml
+Sitemap: https://themercenary.org/sitemap.xml
